@@ -1,32 +1,37 @@
-#include <iostream>
 using namespace std;
 
+void SortVstavka(int* array, int N)
+{
+	for (int i = 1; i < N; i++)
+	{
+		int k = array[i];
+		int j = i - 1;
+		while (j >= 0 && array[j] > k)
+		{
+			array[j + 1] = array[j];
+			array[j] = k;
+			j--;
+		}
+	}
+}
 int main()
 {
-	const int N = 8;
-	int arr[N] = { 7, 2, 9, 4, 11, 3, 5, 1 };
+	int* array;
+	int N = 0;
+	int i;
+	cout << "Enter the dimension of array" << endl;
+	cin >> N;
+	array = new int[N];
+	cout << "Enter the elements of array" << endl;
+	for (i = 0; i < N; i++)
+		cin >> array[i];
 
-	for (int i = 0; i < N; i++)
+	SortVstavka(array, N);
+	cout << "Sorted array" << endl;
+	for (i = 0; i < N; i++)
 	{
-		cout << arr[i] << " ";
+		std::cout << array[i] << " ";
 	}
-	cout << endl;
-
-		for (int i = 1; i < N; i++)
-		{
-			int k = arr[i];
-			int j = i - 1;
-			while (j >= 0 && arr[j] > k)
-			{
-				arr[j + 1] = arr[j];
-				arr[j] = k;
-				j--;
-			}
-		}
-
-	for (int p = 0; p < N; p++)
-	{
-		cout << arr[p] << " ";
-	}
-	cout << endl;
+	delete[] array;
+	return 0;
 }
